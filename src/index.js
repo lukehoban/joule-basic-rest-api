@@ -30,8 +30,10 @@ exports.handler = function(event, context) {
     case 'users':
       if(event.httpMethod === 'GET') {
         if(typeof(event.path[1]) !== 'undefined') {
+            console.log("Getting ", event.path[1])
           users.get(event.path[1])
             .done(function(data) {
+                console.log("Got ", data)
               if(data === null) {
                 response.setHttpStatusCode(404);
                 response.send(null);
